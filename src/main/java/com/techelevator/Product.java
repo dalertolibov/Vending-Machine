@@ -21,6 +21,14 @@ public class Product {
     //Getters and Setters
 
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -54,7 +62,7 @@ public class Product {
     }
 
     public String toString(){
-        return this.slot+" "+this.name+" "+this.price+" "+this.quantity;
+        return "Loacation: "+slot+" Name:"+name+" Price: "+price+" Category: "+category+" Quantity: "+this.quantity;
     }
 }
 
