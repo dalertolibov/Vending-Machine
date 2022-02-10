@@ -13,8 +13,18 @@ public class Inventory {
     public Map<String, Product> getProducts() {
         return products;
     }
+    public void restockInventory(File file){
+        fileSplitter(file);
+    }
 
-    public void addInventory(File file){
+
+
+
+
+
+
+// Splits CSV file and puts values in Product map
+    private void fileSplitter(File file){
         try(Scanner scanner = new Scanner(file)){
             while (scanner.hasNextLine()){
                 String line=scanner.nextLine();
