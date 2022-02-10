@@ -1,7 +1,9 @@
 package com.techelevator;
 
 public class Chip extends Product{
-    public Chip(String name, double price, String slot) {
-        super(name, price, slot);
+
+    public Chip(String slot, String name, double price, String category) {
+        super(slot, name, price, category);
     }
+
 }

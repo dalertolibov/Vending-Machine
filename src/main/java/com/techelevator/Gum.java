@@ -1,7 +1,8 @@
 package com.techelevator;
 
 public class Gum extends Product{
-    public Gum(String name, double price, String slot) {
-        super(name, price, slot);
+
+    public Gum(String slot, String name, double price, String category) {
+        super(slot, name, price, category);
     }
 }
