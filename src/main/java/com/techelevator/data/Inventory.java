@@ -11,8 +11,9 @@ public class Inventory {
    private Map<Slot,Product>products=new HashMap<>();
    private Map<Product,Integer>inventoryCount=new HashMap<>();
 
-
-
+   //Constructor INCOMPLETE - Douglas
+    public Inventory(FileReaderCSV vendingMachineFileReader) {
+    }
 
 
     public void setProducts(Map<Slot, Product> products) {
@@ -31,46 +32,16 @@ public class Inventory {
         return products;
     }
 
+    public int vendingMachineStock() {
+        return 0;//NOT COMPLETE - Douglas
+    }
 
 
-    public void restockInventory(File file){
-        fileSplitter(file);
+
+
     }
 
 
 
 
 
-
-
-// Splits CSV file and puts values in Product map
-    private void fileSplitter(File file){
-        try(Scanner scanner = new Scanner(file)){
-            while (scanner.hasNextLine()){
-                String line=scanner.nextLine();
-                String []lines=line.split("\\|");
-                if (lines[lines.length-1].equals("Chip")) {
-                    products.put(new Slot(lines[0]), new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
-                inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
-                }
-                else if (lines[lines.length-1].equals("Candy")) {
-                    products.put(new Slot(lines[0]), new Candy(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
-                    inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
-                }
-                else if (lines[lines.length-1].equals("Drink")) {
-                    products.put(new Slot(lines[0]),new Beverage(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
-                    inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
-                }
-                if (lines[lines.length-1].equals("Gum")) {
-                    products.put(new Slot(lines[0]),new Gum(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
-                    inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
-                }
-            }
-        }
-        catch (FileNotFoundException e){
-            System.out.println("File not found");
-
-        }
-
-    }
-}

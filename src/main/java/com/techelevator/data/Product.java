@@ -3,20 +3,21 @@ package com.techelevator.data;
 import org.w3c.dom.ls.LSOutput;
 
 public class Product {
+
     private String name;
-    private String category;
-    private double price;
-    private String slot;
+    //private String category;
+    private String price;
+    //private String slot;
 
 
 
     //Constructor
 
-    public Product(String slot,String name, double price, String category) {
+    public Product(String name, String price) {
         this.name = name;
-        this.category=category;
+        //this.category=category;
         this.price = price;
-        this.slot = slot;
+        //this.slot = slot;
 
     }
 
@@ -24,13 +25,13 @@ public class Product {
     //Getters and Setters
 
 
-    public String getCategory() {
-        return category;
-    }
+    //public String getCategory() {
+       // return category;
+   // }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+   // public void setCategory(String category) {
+    //    this.category = category;
+   // }
 
 
 
@@ -42,26 +43,26 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public String getSlot() {
-        return slot;
-    }
+    //public String getSlot() {
+    //    return slot;
+  //  }
 
-    public void setSlot(String slot) {
-        this.slot = slot;
-    }
+   // public void setSlot(String slot) {
+   //     this.slot = slot;
+    //}
 
-    public String toString(){
-        return slot+" "+name+" "+price+" "+category+" ";
+  //  public String toString(){
+   //     return slot+" "+name+" "+price+" "+category+" ";
 
-    }
+    //}
 
 
 }

@@ -1,77 +1,182 @@
 package com.techelevator.data;
 
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 
     private Scanner keyboard;
     private PrintWriter pw;
-    private FileReader
+    private FileReaderCSV vendingMachineFileReader = new FileReaderCSV();
+    private Inventory inventory = new Inventory(vendingMachineFileReader);
+    private VendingMachine vendingMachine = new VendingMachine(inventory);
 
-    public Menu(Scanner keyboard) {
-        this.keyboard = keyboard;
+    public Menu(InputStream input, OutputStream output)throws IOException {
+        this.pw = new PrintWriter(output);
+        this.keyboard = new Scanner(input);
+        inventory.vendingMachineStock();
+
     }
 
-    public String promptMainMenuDisplay() {
+    public Object getChoiceFromOptions(Object[] options) {
+        Object choice = null;
+        while (choice == null) {
+            displayMenuOptions(options);
+            choice = getChoiceFromUserInput(options);
+        }
+        return choice;
+    }
 
-        System.out.println();
-        System.out.println("Welcome To The Virtual Vending Machine!");
-        System.out.println("Review your options below");
-        System.out.println();
+    private Object getChoiceFromUserInput(Object[] options) {
+        Object choice = null;
+        String userInput = keyboard.nextLine();
+        try {
+            int selectedOption = Integer.valueOf(userInput);
+            if (selectedOption > 0 && selectedOption <= options.length) {
+                choice = options[selectedOption - 1];
+            }
+        } catch (NumberFormatException e) {
+        }
+        if (choice == null) {
+            pw.println("\n*** " + userInput + " is not a valid option ***\n");
+        }
+        return choice;
+    }
 
-        System.out.println("(1) Display Vending Machine Items");
-        System.out.println("(2) Purchase");
-        System.out.println("(3) Exit");
-        System.out.println();
+    private void displayMenuOptions(Object[] options) {
+        pw.println();
+        for (int i = 0; i < options.length; i++) {
+            int optionNum = i + 1;
+            pw.println(optionNum + ") " + options[i]);
+        }
+        pw.print("\nPlease choose an option >>> ");
+        pw.flush();
+    }
 
-        System.out.print("Enter the digit corresponding with your choice: >>> ");
-        String optionSelected = keyboard.nextLine();
-        String inputMainMenuDisplay = optionSelected.trim().toLowerCase();
+    public Object getChoiceFromOptionsPurchaseMenu(Object[] options) {
+        Object choice = null;
+        while (choice == null) {
+            displayMenuOptionsPurchaseMenu(options);
+            choice = getChoiceFromUserInputPurchaseMenu(options);
+        }
+        return choice;
+    }
 
-        if (inputMainMenuDisplay.equals("1")) {
-            return displayVendingItems;
-        } else if (inputMainMenuDisplay.equals("2")) {
-            return purchasingProcessMenu;
-        } else if (inputMainMenuDisplay.equals("3")) {
-            return inputMainMenuDisplay;
-        } else {
-            return "";
+    private Object getChoiceFromUserInputPurchaseMenu(Object[] options) {
+        Object choice = null;
+        String userInput = keyboard.nextLine();
+        try {
+            int selectedOption = Integer.valueOf(userInput);
+            if (selectedOption > 0 && selectedOption <= options.length) {
+                choice = options[selectedOption - 1];
+            }
+        } catch (NumberFormatException e) {
+            // eat the exception, an error message will be displayed below since choice will
+            // be null
+        }
+        if (choice == null) {
+            pw.println("\n*** " + userInput + " is not a valid option ***\n");
+        }
+        return choice;
+    }
+
+    private void displayMenuOptionsPurchaseMenu(Object[] options) {
+        for (int i = 0; i < options.length; i++) {
+            int optionNum = i + 1;
+            pw.println(optionNum + ") " + options[i]);
+        }
+        pw.println("Current Money Provided: " + displayCurrentBalance());
+        pw.print("\nPlease choose an option >>> ");
+        pw.flush();
+
+    }
+
+    public void displayInventory() {
+        for (String eachLine : vendingMachine.getInventoryString()) {
+            System.out.println(eachLine);
         }
     }
 
-    public String promptDisplayVendingMachineItems() {
-        return null; //Need Products From Inventory
+    public void feedMoney() throws IOException {
+        System.out.println("Please Insert U.S. Dollar Bills");
+        try {
+            int moneyInserted = keyboard.nextInt();
+            keyboard.nextLine();
+            if (moneyInserted == 1 || moneyInserted == 2 || moneyInserted == 5 || moneyInserted == 10
+                    || moneyInserted == 20 || moneyInserted == 50 || moneyInserted == 100) {
+                vendingMachine.feedMoney(moneyInserted);
+                System.out.println("Thank You For inserting $" + moneyInserted + ".00");
+            } else {
+                System.out.println("Please Insert Valid Currency");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Please Insert Valid Currency");
+        }
+
     }
 
-    public String promptPurchasingProcessMenu() {
+    public void selectProduct() throws IOException {
+        System.out.println("Please Select Product");
+        String userSelection =keyboard.nextLine();         //to be created-Douglas
+        String returnString = vendingMachine.purchaseItem(userSelection);
+        System.out.println(returnString);
 
-        System.out.println();
-        System.out.println("Order Coming Up! But First...Choose An Option Below");
-        System.out.println("******* NEW CUSTOMERS MUST FIRST FEED MONEY *******");
-        System.out.println();
-
-        System.out.println("(1) Feed Money");
-        System.out.println("(2) Select Product");
-        System.out.println("(3) Finish Transaction");
-        System.out.println();
-
-        System.out.print("Enter the digit corresponding with your choice: >>> ");
-        String optionSelected = keyboard.nextLine();
-        String inputPurchasingProcessMenu = optionSelected.trim().toLowerCase();
-
-        return inputPurchasingProcessMenu;
     }
 
-    public String promptFeedMoney() {
-        System.out.println();
-        System.out.println("Enter amount to feed: >>> ");
-        double amount = keyboard.nextDouble();
+    public String displayCurrentBalance() {
+        return vendingMachine.getBalanceAsString();
 
+    }
+
+    public void finishTransaction() throws IOException {
+        System.out.println(vendingMachine.returnChangeInCoins());
+    }
+
+    public void returnSoundMessages() {
+        for (String eachLine : vendingMachine.soundMessages()) {
+            System.out.println(eachLine);
+        }
+    }
+
+
+    public String purchaseItem(String slotLocation) throws IOException {
+        try {
+            if (vendingMachineInventory.returnCurrentInventory(slotLocation) == 0) {
+                return vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + " Sold Out \n";
+            } else if (vendingMachineCoinBox.getBalanceInPennies() < vendingMachineInventory.vendingMachineStock()
+                    .get(slotLocation).getPriceAsIntInPennies()) {
+                return "Please Insert Additional Funds \n";
+            } else {
+                String balanceBeforePurchase = getBalanceAsString();
+                subtractFromInventory(slotLocation);
+                subtractMoney(slotLocation);
+                String successfulPurchase = "Thank You For Purchasing "
+                        + vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + "\n";
+                vendingMachineShoppingCart
+                        .addSoundToList(vendingMachineInventory.vendingMachineStock().get(slotLocation).getSound());
+                vendingMachineLogger.logEvent(
+                        vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + "  " + slotLocation,
+                        balanceBeforePurchase, getBalanceAsString());
+                return successfulPurchase;
+            }
+
+        } catch (NullPointerException e) {
+            return "Please Make A Valid Selection \n";
+        }
+        }
+
+
+    public String soundMessage() {
+        return ""; //INCOMPLETE - Douglas
     }
 }
 
 
- */
+
+
+
 
