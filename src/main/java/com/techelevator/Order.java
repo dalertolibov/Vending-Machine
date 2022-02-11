@@ -3,14 +3,14 @@ package com.techelevator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCart {
+public class Order{
 
 
     private Product product;
     private Inventory inventory;
     private BankAccount bankAccount;
 
-    public ShoppingCart(Inventory inventory,BankAccount bankAccount){
+    public Order(Inventory inventory,BankAccount bankAccount){
 
         this.bankAccount=bankAccount;
         this.inventory=inventory;
