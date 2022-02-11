@@ -7,7 +7,7 @@ public class Product {
     private String category;
     private double price;
     private String slot;
-    private int count;
+
 
 
     //Constructor
@@ -17,7 +17,7 @@ public class Product {
         this.category=category;
         this.price = price;
         this.slot = slot;
-        this.count=5;
+
     }
 
 
@@ -32,13 +32,7 @@ public class Product {
         this.category = category;
     }
 
-    public int getCount() {
-        return count;
-    }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
 
     public String getName() {
         return name;
@@ -65,7 +59,7 @@ public class Product {
     }
 
     public String toString(){
-        return slot+" "+name+" "+price+" "+category+" "+count;
+        return slot+" "+name+" "+price+" "+category+" ";
 
     }
 
