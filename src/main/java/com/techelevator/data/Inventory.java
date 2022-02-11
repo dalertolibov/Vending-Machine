@@ -1,8 +1,7 @@
-package com.techelevator;
+package com.techelevator.data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

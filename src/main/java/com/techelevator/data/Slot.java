@@ -1,4 +1,4 @@
-package com.techelevator;
+package com.techelevator.data;
 
 public class Slot {
     private int size;

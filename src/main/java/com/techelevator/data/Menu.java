@@ -1,10 +1,14 @@
-package com.techelevator;
+package com.techelevator.data;
 
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Menu {
 
     private Scanner keyboard;
+    private PrintWriter pw;
+    private FileReader
 
     public Menu(Scanner keyboard) {
         this.keyboard = keyboard;
