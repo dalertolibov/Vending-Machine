@@ -13,10 +13,7 @@ public class Order{
         this.inventory=inventory;
     }
 
-    public void addProduct(Slot slot){
 
-
-    }
 
 
 }

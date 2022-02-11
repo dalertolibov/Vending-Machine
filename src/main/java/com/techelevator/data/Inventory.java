@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+
+
 public class Inventory {
 
    private Map<Slot,Product>products=new HashMap<>();
-   private Map<Product,Integer>inventoryCount=new HashMap<>();
+   private Map<Product,Integer>inventoryItemsAndCount=new HashMap<>();
+
 
    //Constructor INCOMPLETE - Douglas
     public Inventory(FileReaderCSV vendingMachineFileReader) {
@@ -21,11 +24,11 @@ public class Inventory {
     }
 
     public Map<Product, Integer> getInventoryCount() {
-        return inventoryCount;
+        return inventoryItemsAndCount;
     }
 
     public void setInventoryCount(Map<Product, Integer> inventoryCount) {
-        this.inventoryCount = inventoryCount;
+        this.inventoryItemsAndCount = inventoryCount;
     }
 
     public Map<Slot,Product> getProducts() {
