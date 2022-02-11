@@ -13,6 +13,9 @@ public class Inventory {
     public Map<String, Product> getProducts() {
         return products;
     }
+
+
+
     public void restockInventory(File file){
         fileSplitter(file);
     }
