@@ -6,24 +6,20 @@ import java.util.List;
 public class ShoppingCart {
 
 
-    private List<Product> productsAtShoppingCart=new ArrayList<>();
+    private Product product;
     private Inventory inventory;
+    private BankAccount bankAccount;
 
-    public ShoppingCart(Inventory inventory){
+    public ShoppingCart(Inventory inventory,BankAccount bankAccount){
+
+        this.bankAccount=bankAccount;
         this.inventory=inventory;
     }
 
-    public void addProduct(String slot){
-        if(inventory.getProducts().get(slot).getCount()>0){
-            productsAtShoppingCart.add(inventory.getProducts().get(slot));
-            inventory.getProducts().get(slot).setCount(inventory.getProducts().get(slot).getCount()-1);
-
-        }
+    public void addProduct(Slot slot){
 
 
     }
 
-    public List<Product> getProductsAtShoppingCart() {
-        return productsAtShoppingCart;
-    }
+
 }

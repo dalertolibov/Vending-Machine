@@ -10,6 +10,23 @@ import java.util.Scanner;
 public class Inventory {
 
    private Map<Slot,Product>products=new HashMap<>();
+   private Map<Product,Integer>inventoryCount=new HashMap<>();
+
+
+
+
+
+    public void setProducts(Map<Slot, Product> products) {
+        this.products = products;
+    }
+
+    public Map<Product, Integer> getInventoryCount() {
+        return inventoryCount;
+    }
+
+    public void setInventoryCount(Map<Product, Integer> inventoryCount) {
+        this.inventoryCount = inventoryCount;
+    }
 
     public Map<Slot,Product> getProducts() {
         return products;
@@ -35,15 +52,19 @@ public class Inventory {
                 String []lines=line.split("\\|");
                 if (lines[lines.length-1].equals("Chip")) {
                     products.put(new Slot(lines[0]), new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
+                inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
                 }
                 else if (lines[lines.length-1].equals("Candy")) {
                     products.put(new Slot(lines[0]), new Candy(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
+                    inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
                 }
                 else if (lines[lines.length-1].equals("Drink")) {
                     products.put(new Slot(lines[0]),new Beverage(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
+                    inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
                 }
                 if (lines[lines.length-1].equals("Gum")) {
                     products.put(new Slot(lines[0]),new Gum(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
+                    inventoryCount.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),5);
                 }
             }
         }
