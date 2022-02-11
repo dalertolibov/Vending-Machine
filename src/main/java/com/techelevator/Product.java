@@ -5,7 +5,7 @@ public class Product {
     String category;
     private double price;
     private String slot;
-    private int quantity;
+
 
     //Constructor
 
@@ -15,7 +15,7 @@ public class Product {
         this.price = price;
         this.slot = slot;
 
-        this.quantity=5;
+
     }
 
     //Getters and Setters
@@ -29,13 +29,7 @@ public class Product {
         this.category = category;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public String getName() {
         return name;
@@ -62,7 +56,7 @@ public class Product {
     }
 
     public String toString(){
-        return "Loacation: "+slot+" Name:"+name+" Price: "+price+" Category: "+category+" Quantity: "+this.quantity;
+        return slot+" "+name+" "+price+" "+category;
     }
 }
 
