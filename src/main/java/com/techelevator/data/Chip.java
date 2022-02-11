@@ -7,7 +7,7 @@ public class Chip extends Product{
     }
 
     @Override
-    public String getSound() {
+    public String getEatingSound() {
         return "\"Crunch Crunch, Yum!\"";
     }
 

@@ -75,8 +75,7 @@ public class Menu {
                 choice = options[selectedOption - 1];
             }
         } catch (NumberFormatException e) {
-            // eat the exception, an error message will be displayed below since choice will
-            // be null
+
         }
         if (choice == null) {
             pw.println("\n*** " + userInput + " is not a valid option ***\n");
@@ -121,7 +120,7 @@ public class Menu {
 
     public void selectProduct() throws IOException {
         System.out.println("Please Select Product");
-        String userSelection = keyboard.nextLine();         //to be created-Douglas
+        String userSelection = keyboard.nextLine();
         String returnString = vendingMachine.purchaseItem(userSelection);
         System.out.println(returnString);
 

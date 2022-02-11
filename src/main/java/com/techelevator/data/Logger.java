@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class Logger {
 
-    private String fileName = "log.txt";
+    private String fileName = "log user input vending machine.txt";
     private boolean deleteFile = new File(fileName).delete();
     private File logFile = new File(fileName);
 

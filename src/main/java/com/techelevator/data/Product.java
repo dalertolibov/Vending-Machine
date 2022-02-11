@@ -11,7 +11,7 @@ public abstract class Product {
         this.price = price;
     }
 
-    public abstract String getSound();
+    public abstract String getEatingSound();
 
     public String getName() {
         return name;
@@ -21,15 +21,10 @@ public abstract class Product {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public int getPriceAsIntInPennies() {
-        price = price.replace("$", "").replace(".","");
+    public int getPriceInPennies() {
+        price = price.replace("$", "").replace(".", "");
         return Integer.parseInt(price);
     }
-
 
 }
 

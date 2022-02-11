@@ -30,7 +30,7 @@ public class VendingMachine {
     }
 
     public void subtractBalance(String slotLocation) {
-        int debit = vendingMachineInventory.vendingMachineStock().get(slotLocation).getPriceAsIntInPennies();
+        int debit = vendingMachineInventory.vendingMachineStock().get(slotLocation).getPriceInPennies();
         vendingMachineBankAccount.withdrawMoney(debit);
 
     }
@@ -85,7 +85,7 @@ public class VendingMachine {
             if (vendingMachineInventory.returnCurrentInventory(slotLocation) == 0) {
                 return vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + " Sold Out \n";
             } else if (vendingMachineBankAccount.balanceInPennies() < vendingMachineInventory.vendingMachineStock()
-                    .get(slotLocation).getPriceAsIntInPennies()) {
+                    .get(slotLocation).getPriceInPennies()) {
                 return "Please Insert Additional Funds \n";
             } else {
                 String balanceBeforePurchase = balanceAsString();
@@ -94,7 +94,7 @@ public class VendingMachine {
                 String successfulPurchase = "Thank You For Purchasing "
                         + vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + "\n";
                 vendingMachineShoppingCart
-                        .addSoundToList(vendingMachineInventory.vendingMachineStock().get(slotLocation).getSound());
+                        .addSoundToList(vendingMachineInventory.vendingMachineStock().get(slotLocation).getEatingSound());
                 vendingMachineLogger.logEvent(
                         vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + "  " + slotLocation,
                         balanceBeforePurchase, balanceAsString());

@@ -7,7 +7,7 @@ public class Candy extends Product{
     }
 
     @Override
-    public String getSound() {
+    public String getEatingSound() {
         return "\"Munch Munch, Yum!\"";
     }
 

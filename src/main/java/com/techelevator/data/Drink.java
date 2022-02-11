@@ -7,7 +7,7 @@ public class Drink extends Product {
     }
 
     @Override
-    public String getSound() {
+    public String getEatingSound() {
         return "\"Glug Glug, Yum!\"";
     }
 

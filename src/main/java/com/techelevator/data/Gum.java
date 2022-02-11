@@ -7,7 +7,7 @@ public class Gum extends Product{
     }
 
     @Override
-    public String getSound() {
+    public String getEatingSound() {
         return "\"Chew Chew, Yum!\"";
     }
 
