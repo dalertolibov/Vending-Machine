@@ -1,14 +1,14 @@
 package com.techelevator.data;
 
-public class Gum extends Product{
+public class Drink extends Product {
 
-    public Gum(String name, String price) {
+    public Drink(String name, String price) {
         super(name, price);
     }
 
     @Override
     public String getSound() {
-        return "\"Chew Chew, Yum!\"";
+        return "\"Glug Glug, Yum!\"";
     }
 
 }

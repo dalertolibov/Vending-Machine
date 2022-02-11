@@ -6,4 +6,9 @@ public class Chip extends Product{
         super(name, price);
     }
 
+    @Override
+    public String getSound() {
+        return "\"Crunch Crunch, Yum!\"";
+    }
+
 }

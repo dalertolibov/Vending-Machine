@@ -8,7 +8,6 @@ public class BankAccount {
         balance = 0;
     }
 
-    //Methods
     public void depositMoney(int depositAmount) {
         balance+= (depositAmount * 100);
     }

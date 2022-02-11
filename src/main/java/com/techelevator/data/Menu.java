@@ -15,7 +15,7 @@ public class Menu {
     private Inventory inventory = new Inventory(vendingMachineFileReader);
     private VendingMachine vendingMachine = new VendingMachine(inventory);
 
-    public Menu(InputStream input, OutputStream output)throws IOException {
+    public Menu(InputStream input, OutputStream output) throws IOException {
         this.pw = new PrintWriter(output);
         this.keyboard = new Scanner(input);
         inventory.vendingMachineStock();
@@ -121,14 +121,14 @@ public class Menu {
 
     public void selectProduct() throws IOException {
         System.out.println("Please Select Product");
-        String userSelection =keyboard.nextLine();         //to be created-Douglas
+        String userSelection = keyboard.nextLine();         //to be created-Douglas
         String returnString = vendingMachine.purchaseItem(userSelection);
         System.out.println(returnString);
 
     }
 
     public String displayCurrentBalance() {
-        return vendingMachine.getBalanceAsString();
+        return vendingMachine.balanceAsString();
 
     }
 
@@ -136,43 +136,14 @@ public class Menu {
         System.out.println(vendingMachine.returnChangeInCoins());
     }
 
+
     public void returnSoundMessages() {
-        for (String eachLine : vendingMachine.soundMessages()) {
+        for (String eachLine : vendingMachine.returnSounds()) {
             System.out.println(eachLine);
         }
+
     }
 
-
-    public String purchaseItem(String slotLocation) throws IOException {
-        try {
-            if (vendingMachineInventory.returnCurrentInventory(slotLocation) == 0) {
-                return vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + " Sold Out \n";
-            } else if (vendingMachineCoinBox.getBalanceInPennies() < vendingMachineInventory.vendingMachineStock()
-                    .get(slotLocation).getPriceAsIntInPennies()) {
-                return "Please Insert Additional Funds \n";
-            } else {
-                String balanceBeforePurchase = getBalanceAsString();
-                subtractFromInventory(slotLocation);
-                subtractMoney(slotLocation);
-                String successfulPurchase = "Thank You For Purchasing "
-                        + vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + "\n";
-                vendingMachineShoppingCart
-                        .addSoundToList(vendingMachineInventory.vendingMachineStock().get(slotLocation).getSound());
-                vendingMachineLogger.logEvent(
-                        vendingMachineInventory.vendingMachineStock().get(slotLocation).getName() + "  " + slotLocation,
-                        balanceBeforePurchase, getBalanceAsString());
-                return successfulPurchase;
-            }
-
-        } catch (NullPointerException e) {
-            return "Please Make A Valid Selection \n";
-        }
-        }
-
-
-    public String soundMessage() {
-        return ""; //INCOMPLETE - Douglas
-    }
 }
 
 

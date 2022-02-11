@@ -6,15 +6,15 @@ import java.io.IOException;
 
 public class VendingMachineCLI {
 
-    private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
-    private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-    private static final String[] MAIN_MENU_OPTIONS = {MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE};
+    private static final String MENU_DISPLAY_ITEMS = "Display Vending Machine Items";
+    private static final String MENU_PURCHASE = "Purchase";
+    private static final String[] MAIN_MENU_OPTIONS = {MENU_DISPLAY_ITEMS, MENU_PURCHASE};
 
-    private static final String PURCHASE_MENU_OPTION_FEED_MONEY = "Feed Money";
-    private static final String PURCHASE_MENU_OPTION_SELECT_PRODUCT = "Select Product";
-    private static final String PURCHASE_MENU_OPTION_FINISH_TRANSACTION = "Finish Transaction";
-    private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_OPTION_FEED_MONEY,
-            PURCHASE_MENU_OPTION_SELECT_PRODUCT, PURCHASE_MENU_OPTION_FINISH_TRANSACTION};
+    private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
+    private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
+    private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
+    private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_FEED_MONEY,
+            PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION};
 
     private Menu menu;
 
@@ -25,25 +25,25 @@ public class VendingMachineCLI {
     public void run() throws IOException {
 
         while (true) {
-            String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+            String optionOne = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
-            if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
+            if (optionOne.equals(MENU_DISPLAY_ITEMS)) {
                 menu.displayInventory();
 
 
-            } else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+            } else if (optionOne.equals(MENU_PURCHASE)) {
 
                 while (true) {
-                    String choice2 = (String) menu.getChoiceFromOptionsPurchaseMenu(PURCHASE_MENU_OPTIONS);
+                    String optionTwo = (String) menu.getChoiceFromOptionsPurchaseMenu(PURCHASE_MENU_OPTIONS);
 
-                    if (choice2.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
+                    if (optionTwo.equals(PURCHASE_MENU_FEED_MONEY)) {
                         menu.feedMoney();
 
-                    } else if (choice2.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
+                    } else if (optionTwo.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
                         menu.selectProduct();
-                    } else if (choice2.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
+                    } else if (optionTwo.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
                         menu.finishTransaction();
-                        menu.soundMessage();
+                        menu.returnSoundMessages();
                         break;
                     }
                 }
@@ -60,4 +60,4 @@ public class VendingMachineCLI {
     }
 }
 
-}
+

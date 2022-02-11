@@ -1,48 +1,44 @@
 package com.techelevator.data;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
-
-
+import java.util.TreeMap;
 
 public class Inventory {
 
-   private Map<Slot,Product>products=new HashMap<>();
-   private Map<Product,Integer>inventoryItemsAndCount=new HashMap<>();
+    private FileReaderCSV fileReaderObject;
+    private TreeMap<String, Integer> inventoryList = new TreeMap<>();
 
-
-   //Constructor INCOMPLETE - Douglas
-    public Inventory(FileReaderCSV vendingMachineFileReader) {
+    public Inventory(FileReaderCSV fileReaderObject) {
+        this.fileReaderObject = fileReaderObject;
+        parLevelAtStartUp();
     }
 
-
-    public void setProducts(Map<Slot, Product> products) {
-        this.products = products;
+    private void parLevelAtStartUp() {
+        for (String[] product : fileReaderObject.inventoryArrayList()) {
+            int startingStock = 5;
+            inventoryList.put(product[0], startingStock);
+        }
     }
 
-    public Map<Product, Integer> getInventoryCount() {
-        return inventoryItemsAndCount;
+    public Map<String, Product> vendingMachineStock() {
+        return fileReaderObject.mapLocationAndProduct();
     }
 
-    public void setInventoryCount(Map<Product, Integer> inventoryCount) {
-        this.inventoryItemsAndCount = inventoryCount;
+    public void subtractFromInventory(String slotLocation) {
+        inventoryList.put(slotLocation, inventoryList.get(slotLocation) - 1);
     }
 
-    public Map<Slot,Product> getProducts() {
-        return products;
+    public int returnCurrentInventory(String slotLocation) {
+        return inventoryList.get(slotLocation);
     }
 
-    public int vendingMachineStock() {
-        return 0;//NOT COMPLETE - Douglas
+    public Map<String, Integer> returnInventoryMap() {
+        return inventoryList;
     }
+}
 
 
 
-
-    }
 
 
 

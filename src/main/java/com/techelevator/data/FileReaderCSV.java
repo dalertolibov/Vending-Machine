@@ -9,13 +9,12 @@ import java.util.TreeMap;
 
 public class FileReaderCSV {
 
-    //Instantiate
     private String vendingMachineFile = "vendingmachine.csv";
-    private File inventoryFile = new File(vendingMachineFile);
+    private File vendingInventoryFile = new File(vendingMachineFile);
 
     private List<String> listAllProductData() {
         List<String>  listInputFileLines = new ArrayList<>();
-        try(Scanner fileScanner = new Scanner(inventoryFile)) {
+        try(Scanner fileScanner = new Scanner(vendingInventoryFile)) {
             while (fileScanner.hasNextLine()) {
                 listInputFileLines.add(fileScanner.nextLine());
             }
@@ -27,7 +26,7 @@ public class FileReaderCSV {
 
     public List<String[]> inventoryArrayList() {
 
-        List<String[]> inventoryArray   =   new ArrayList<String[]>();
+        List<String[]> inventoryArray = new ArrayList<>();
 
         for (String line : listAllProductData()) {
             inventoryArray.add(line.split("\\|"));
@@ -36,24 +35,24 @@ public class FileReaderCSV {
     }
 
     public TreeMap<String, Product> mapLocationAndProduct() {
-        TreeMap<String, Product> inventoryMap = new TreeMap<String, Product>();
+        TreeMap<String, Product> inventoryProductMap = new TreeMap<String, Product>();
         for (String line : listAllProductData()) {
             String[] defineProductCategory = line.split("\\|");
             if (defineProductCategory[3].equals("Candy")) {
                 Candy candy = new Candy(defineProductCategory[1], defineProductCategory[2]);
-                inventoryMap.put(defineProductCategory[0], candy);
+                inventoryProductMap.put(defineProductCategory[0], candy);
             } else if (defineProductCategory[3].equals("Chip")) {
-                Candy candy = new Candy(defineProductCategory[1], defineProductCategory[2]);
-                inventoryMap.put(defineProductCategory[0], candy);
+                Chip chip = new Chip(defineProductCategory[1], defineProductCategory[2]);
+                inventoryProductMap.put(defineProductCategory[0], chip);
             } else if (defineProductCategory[3].equals("Drink")) {
-                Candy candy = new Candy(defineProductCategory[1], defineProductCategory[2]);
-                inventoryMap.put(defineProductCategory[0], candy);
+                Drink drink = new Drink(defineProductCategory[1], defineProductCategory[2]);
+                inventoryProductMap.put(defineProductCategory[0], drink);
             } else if (defineProductCategory[3].equals("Gum")) {
-                Candy candy = new Candy(defineProductCategory[1], defineProductCategory[2]);
-                inventoryMap.put(defineProductCategory[0], candy);
+                Gum gum = new Gum(defineProductCategory[1], defineProductCategory[2]);
+                inventoryProductMap.put(defineProductCategory[0], gum);
             }
         }
-        return inventoryMap;
+        return inventoryProductMap;
     }
 
         }
