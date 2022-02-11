@@ -1,10 +1,13 @@
 package com.techelevator;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class Product {
     private String name;
-    String category;
+    private String category;
     private double price;
     private String slot;
+    private int count;
 
 
     //Constructor
@@ -14,9 +17,9 @@ public class Product {
         this.category=category;
         this.price = price;
         this.slot = slot;
-
-
+        this.count=5;
     }
+
 
     //Getters and Setters
 
@@ -29,7 +32,13 @@ public class Product {
         this.category = category;
     }
 
+    public int getCount() {
+        return count;
+    }
 
+    public void setCount(int count) {
+        this.count = count;
+    }
 
     public String getName() {
         return name;
@@ -56,8 +65,11 @@ public class Product {
     }
 
     public String toString(){
-        return slot+" "+name+" "+price+" "+category;
+        return slot+" "+name+" "+price+" "+category+" "+count;
+
     }
+
+
 }
 
 

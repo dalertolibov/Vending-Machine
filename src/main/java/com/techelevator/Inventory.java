@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Inventory {
-    private Integer quantity;
-   private Map<Product,Integer>products=new HashMap<>();
 
-    public Map<Product,Integer> getProducts() {
+   private Map<String,Product>products=new HashMap<>();
+
+    public Map<String,Product> getProducts() {
         return products;
     }
 
@@ -34,16 +34,16 @@ public class Inventory {
                 String line=scanner.nextLine();
                 String []lines=line.split("\\|");
                 if (lines[lines.length-1].equals("Chip")) {
-                    products.put(new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),quantity);
+                    products.put(lines[0], new Chip(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
                 }
                 else if (lines[lines.length-1].equals("Candy")) {
-                    products.put(new Candy(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),quantity);
+                    products.put(lines[0], new Candy(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
                 }
                 else if (lines[lines.length-1].equals("Drink")) {
-                    products.put(new Beverage(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),quantity);
+                    products.put(lines[0],new Beverage(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
                 }
                 if (lines[lines.length-1].equals("Gum")) {
-                    products.put(new Gum(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]),quantity);
+                    products.put(lines[0],new Gum(lines[0],lines[1],Double.parseDouble(lines[2]),lines[3]));
                 }
             }
         }

@@ -14,6 +14,12 @@ public class ShoppingCart {
     }
 
     public void addProduct(String slot){
+        if(inventory.getProducts().get(slot).getCount()>0){
+            productsAtShoppingCart.add(inventory.getProducts().get(slot));
+            inventory.getProducts().get(slot).setCount(inventory.getProducts().get(slot).getCount()-1);
+
+        }
+
 
     }
 
