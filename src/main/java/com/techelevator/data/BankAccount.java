@@ -2,7 +2,7 @@ package com.techelevator.data;
 
 public class BankAccount {
 
-    public int balance;
+    private int balance;
 
     public BankAccount() {
         balance = 0;
