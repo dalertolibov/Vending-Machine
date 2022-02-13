@@ -1,8 +1,6 @@
 package com.techelevator;
 
 import com.techelevator.data.Menu;
-
-import java.awt.*;
 import java.io.IOException;
 
 public class VendingMachineCLI {
@@ -75,6 +73,16 @@ public class VendingMachineCLI {
                     } else if (optionTwo.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
                         menu.finishTransaction();
                         menu.returnSoundMessages();
+                        System.out.println();
+                        System.out.println();
+                        System.out.print(" /$$$$$$$$/$$   /$$ /$$$$$$ /$$   /$$/$$   /$$       /$$     /$$/$$$$$$ /$$   /$$       /$$/$$/$$\n");
+                        System.out.print("|__  $$__| $$  | $$/$$__  $| $$$ | $| $$  /$$/      |  $$   /$$/$$__  $| $$  | $$      | $| $| $$\n");
+                        System.out.print("   | $$  | $$  | $| $$  \\ $| $$$$| $| $$ /$$/        \\  $$ /$$| $$  \\ $| $$  | $$      | $| $| $$\n");
+                        System.out.print("   | $$  | $$$$$$$| $$$$$$$| $$ $$ $| $$$$$/          \\  $$$$/| $$  | $| $$  | $$      | $| $| $$\n");
+                        System.out.print("   | $$  | $$__  $| $$__  $| $$  $$$| $$  $$           \\  $$/ | $$  | $| $$  | $$      |__|__|__/\n");
+                        System.out.print("   | $$  | $$  | $| $$  | $| $$\\  $$| $$\\  $$           | $$  | $$  | $| $$  | $$                \n");
+                        System.out.print("   | $$  | $$  | $| $$  | $| $$ \\  $| $$ \\  $$          | $$  |  $$$$$$|  $$$$$$/       /$$/$$/$$\n");
+                        System.out.print("   |__/  |__/  |__|__/  |__|__/  \\__|__/  \\__/          |__/   \\______/ \\______/       |__|__|__/\n");
                         break;
                     }
                 }

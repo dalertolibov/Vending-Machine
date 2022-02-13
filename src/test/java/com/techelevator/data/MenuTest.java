@@ -52,7 +52,7 @@ public class MenuTest {
         String menuDisplay = "\n" + "1) " + options[0].toString() + "\n" + "2) " + options[1].toString() + "\n" + "3) "
                 + options[2].toString() + "\n\n" + "Please choose an option >>> ";
 
-        String expected = menuDisplay + "\n*** 4 is not a valid option ***\n\n" + menuDisplay;
+        String expected = menuDisplay + "\n<<< 4 is not a valid option >>>\n\n" + menuDisplay;
 
         Assert.assertEquals(expected, sut.toString());
     }
@@ -67,7 +67,7 @@ public class MenuTest {
         String menuDisplay = "\n" + "1) " + options[0].toString() + "\n" + "2) " + options[1].toString() + "\n" + "3) "
                 + options[2].toString() + "\n\n" + "Please choose an option >>> ";
 
-        String expected = menuDisplay + "\n*** 0 is not a valid option ***\n\n" + menuDisplay;
+        String expected = menuDisplay + "\n<<< 0 is not a valid option >>>\n\n" + menuDisplay;
 
         Assert.assertEquals(expected, sut.toString());
     }
@@ -82,7 +82,7 @@ public class MenuTest {
         String menuDisplay = "\n" + "1) " + options[0].toString() + "\n" + "2) " + options[1].toString() + "\n" + "3) "
                 + options[2].toString() + "\n\n" + "Please choose an option >>> ";
 
-        String expected = menuDisplay + "\n*** Mickey Mouse is not a valid option ***\n\n" + menuDisplay;
+        String expected = menuDisplay + "\n<<< Mickey Mouse is not a valid option >>>\n\n" + menuDisplay;
 
         Assert.assertEquals(expected, sut.toString());
     }
