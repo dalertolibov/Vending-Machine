@@ -42,7 +42,7 @@ public class Menu {
         } catch (NumberFormatException e) {
         }
         if (choice == null) {
-            pw.println("\n*** " + userInput + " is not a valid option ***\n");
+            pw.println("\n<<< " + userInput + " is not a valid option >>>\n");
         }
         return choice;
     }
@@ -78,7 +78,7 @@ public class Menu {
 
         }
         if (choice == null) {
-            pw.println("\n*** " + userInput + " is not a valid option ***\n");
+            pw.println("\n<<< " + userInput + " is not a valid option >>>\n");
         }
         return choice;
     }
@@ -108,12 +108,12 @@ public class Menu {
             if (moneyInserted == 1 || moneyInserted == 2 || moneyInserted == 5 || moneyInserted == 10
                     || moneyInserted == 20 || moneyInserted == 50 || moneyInserted == 100) {
                 vendingMachine.feedMoney(moneyInserted);
-                System.out.println("Thank You For inserting $" + moneyInserted + ".00");
+                System.out.println("Thank You For Inserting $" + moneyInserted + ".00");
             } else {
-                System.out.println("Please Insert Valid Currency");
+                System.out.println("<<< Please Insert Valid Currency >>>");
             }
         } catch (InputMismatchException e) {
-            System.out.println("Please Insert Valid Currency");
+            System.out.println("<<< Please Insert Valid Currency >>>");
         }
 
     }
